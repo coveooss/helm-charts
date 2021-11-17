@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: honeycomb-refinery
+  labels:
+    app: prometheus2-prometheus
+    app.kubernetes.io/instance: honeycomb-refinery
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: refinery
+    app.kubernetes.io/version: v1.5.0
+    helm.sh/chart: refinery-1.2.0
+    prometheus: prometheus2
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: honeycomb-refinery
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: refinery
+      app.kubernetes.io/version: v1.5.0
+      helm.sh/chart: refinery-1.2.0
+  endpoints:
+  - port: metrics
+    path: "/metrics"

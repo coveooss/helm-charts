@@ -50,6 +50,13 @@ app.kubernetes.io/name: {{ include "refinery.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
+{{/*
+Service port for prometheus metrics
+*/}}
+{{- define "refinery.metricsPort" -}}
+{{- $parts := split ":" .Values.config.PrometheusMetrics.MetricsListenAddr }}
+{{- $parts._1 }}
+{{- end }}
 
 
 {{/*

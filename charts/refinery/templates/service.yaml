@@ -23,7 +23,7 @@ spec:
       protocol: TCP
       name: grpc
     {{- if eq .Values.config.Metrics "prometheus" }}
-    - port: 9090
+    - port: {{ include "refinery.metricsPort" . }}
       targetPort: metrics
       protocol: TCP
       name: metrics

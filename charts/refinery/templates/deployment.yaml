@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         {{- if eq .Values.config.Metrics "prometheus" }}
-        prometheus.io/port: "9090"
+        prometheus.io/port: {{ include "refinery.metricsPort" . }}
         prometheus.io/scrape: "true"
         {{- end }}
       labels:
@@ -63,7 +63,7 @@ spec:
               protocol: TCP
             {{- if eq .Values.config.Metrics "prometheus" }}
             - name: metrics
-              containerPort: 9090
+              containerPort: {{ include "refinery.metricsPort" . }}
               protocol: TCP
             {{- end }}
           volumeMounts:

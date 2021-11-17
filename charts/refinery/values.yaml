@@ -290,6 +290,18 @@ service:
   labels: {}
   annotations: {}
 
+# The service monitor is ingested by prometheus as part of its scraping configuration
+# requires config.Metrics = "prometheus"
+serviceMonitor:
+  enabled: false
+  interval: ""
+
+  ## Metric relabel configs to apply to samples before ingestion.
+  metricRelabelings: []
+
+  ## relabel configs to apply to samples before ingestion.
+  relabelings: []
+  
 ingress:
   enabled: false
   labels: {}
